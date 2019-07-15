@@ -6,6 +6,8 @@
            review="https://android-review.googlesource.com/" />
   <remote  name="gl"
            fetch="ssh://git@github.com/Kernel-GL-HRK/" />
+  <remote  name="samko"
+           fetch="ssh://git@github.com/BulldozerBSG/" />
   <default revision="refs/tags/android-9.0.0_r35"
            remote="aosp"
            sync-j="4" />
@@ -74,7 +76,7 @@
   <project path="device/linaro/bootloader/arm-trusted-firmware" name="device/linaro/bootloader/arm-trusted-firmware" />
   <project path="device/linaro/bootloader/edk2" name="device/linaro/bootloader/edk2" />
   <project path="device/linaro/bootloader/OpenPlatformPkg" name="device/linaro/bootloader/OpenPlatformPkg" />
-  <project path="device/linaro/hikey" remote="gl" name="hikey-linaro-device" revision="gl-hikey960" groups="device,hikey,pdk,training" />
+  <project path="device/linaro/hikey" remote="samko" name="hikey-linaro-device" revision="gl-hikey960" groups="device,hikey,pdk,training" />
   <project path="device/linaro/hikey-kernel" name="device/linaro/hikey-kernel" groups="device,hikey,pdk" clone-depth="1" />
   <project path="device/sample" name="device/sample" groups="pdk" />
   <project path="external/aac" name="platform/external/aac" groups="pdk" />
@@ -502,7 +504,7 @@
   <project path="hardware/qcom/wlan" name="platform/hardware/qcom/wlan" groups="qcom_wlan,pdk-qcom" />
   <project path="hardware/ril" name="platform/hardware/ril" groups="pdk" />
   <project path="kernel/configs" name="kernel/configs" groups="vts,pdk" />
-  <project path="kernel/hikey-linaro" remote="gl" name="hikey-linaro-kernel" revision="gl-hikey960-4.9" groups="kernel,hikey,pdk,training" />
+  <project path="kernel/hikey-linaro" remote="samko" name="hikey-linaro-kernel" revision="gl-hikey960-4.9" groups="kernel,hikey,pdk,training" />
   <project path="kernel/tests" name="kernel/tests" />
   <project path="libcore" name="platform/libcore" groups="pdk" />
   <project path="libnativehelper" name="platform/libnativehelper" groups="pdk" />
@@ -710,6 +712,16 @@
   <project path="tools/test/connectivity" name="platform/tools/test/connectivity" groups="pdk" />
   <project path="tools/tradefederation/core" name="platform/tools/tradefederation" groups="pdk,tradefed" />
   <project path="tools/tradefederation/contrib" name="platform/tools/tradefederation/contrib" groups="pdk,tradefed" />
+  <project path="vendor/gl/repo" remote="samko" name="gl-android-training-2019" revision="Pavlo.Samko" groups="device,hikey,pdk-fs,training">
+    <linkfile src="04-LedControl/device-vendor.mk" dest="vendor/gl/hikey960/device-vendor.mk" />
+    <linkfile src="04-LedControl/sepolicy" dest="vendor/gl/sepolicy" />
+    <linkfile src="04-LedControl/manifest.xml" dest="vendor/gl/hardware/interfaces/manifest.xml" />
+    <linkfile src="04-LedControl/compatibility_matrix.xml" dest="vendor/gl/hardware/interfaces/compatibility_matrix.xml" />
+    <linkfile src="04-LedControl/HardwareAndroid.bp" dest="vendor/gl/hardware/interfaces/Android.bp" />
+    <linkfile src="04-LedControl/LedControlHalInterface_1_0" dest="vendor/gl/hardware/interfaces/ledcontrol/1.0" />
+    <linkfile src="04-LedControl/LedControlService/app/src/main" dest="vendor/gl/packages/services/LedControlService" />
+    <linkfile src="04-LedControl/LedControl/app/src/main" dest="vendor/gl/packages/apps/LedControl" />
+  </project>
 
   <repo-hooks in-project="platform/tools/repohooks" enabled-list="pre-upload" />
 
